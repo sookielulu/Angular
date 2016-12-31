@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+    <!--当是最后一个元素时，加上一个active的样式-->
+    <li ng-repeat="item in data track by $index" ng-class="{active:$last}">
+        <!--决定最后一个元素是使用a还是span-->
+        <a href="#" ng-if="!$last">{{item}}</a>
+        <span ng-if="$last">{{item}}</span>
+    </li>
+</ol>

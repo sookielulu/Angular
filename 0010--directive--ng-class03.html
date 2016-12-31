@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-class指令03</title>
+    <style>
+        .redOne {
+            color: red;
+        }
+        .greenOne {
+            color: green;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+<ul ng-controller="ListController">
+    <!--在使用ng-repeat="item in students"时，由于students中有重复的值，所以报错-->
+    <!--此时使用track by，表示依照一个不重复的值进行取值-->
+    <input type="text" ng-model="lastname">
+    <li ng-repeat="item in students track by $index" ng-class="{redOne:lastname!=''&&item.startsWith(lastname)}">{{item}}</li>
+</ul>
+<script src="angular.js"></script>
+<script>
+    angular.module('myApp',[])
+            .controller('ListController',['$scope',function ($scope) {
+                $scope.students = ['jack','lucy','tom','anna','anna','anna'];
+//                $scope.students = ['张三','李四','王五','王五','王五','王五'];
+            }])
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-src指令</title>
+    <script src="angular.js"></script>
+</head>
+<body ng-app ng-init="imgUrl='image/44.jpg'" ng-cloak>
+<!--
+这里如果直接写src和href，则
+1、img中，在angular没有加载完成时，可能会跳转到一个错误的地址，所以采用ng-src
+2、a标签中，在angular没有加载完成时，点击跳转可能会跳转到一个错误的地址，故采用ng-href
+-->
+<img ng-src="{{imgUrl}}" alt="">
+<a ng-href="{{imgUrl}}">跳转到图片</a>
+</body>
+</html>

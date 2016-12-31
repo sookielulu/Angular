@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解析url</title>
+    <script src="angular.js"></script>
+    <script>
+        window.onload = function () {
+            (function (w) {
+
+                //采用a链接可以解析url地址
+                var url = 'https://www.baidu.com:8080/aaa/1.html?id=10#name';
+                var aLink = document.createElement('a');
+                aLink.href = url;
+
+                //JSON.stringify()方法可以帮助把一个对象序列化成字符串的方式描述
+                console.log(JSON.stringify({
+                    id:1,
+                    name: 'lucy',
+                    age: 20
+                }));
+
+                console.log(aLink.host);
+                console.log(aLink.hostname);
+                console.log(aLink.port);
+                console.log(aLink.pathname);
+                console.log(aLink.search);
+                console.log(aLink.hash);
+
+            })(window);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

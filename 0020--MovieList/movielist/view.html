@@ -1,0 +1,47 @@
+
+<h1 class="page-header">{{title}}</h1>
+<!--当message有值时将message展示出来-->
+<h2 ng-if="message">{{message}}</h2>
+<div class="list-group">
+    <a ng-repeat="item in subjects" href="#/detail/{{item.id}}" class="list-group-item">
+        <span class="badge">{{item.rating.average}}</span>
+        <div class="media">
+            <div class="media-left">
+                <!--这里不写src，而用ng-src，因为如果用src，则在angular还没加载出来时，会将里面的内容当做一个地址去请求-->
+                <img class="media-object" ng-src="{{item.images.small}}" alt="{{item.title}}">
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">{{item.title}}</h3>
+                <p>导演：
+                    <span ng-repeat="d in item.directors">
+                        {{d.name}}
+                        <!--多个导演时，每个导演后面有顿号，最后一个后面没有顿号-->
+                        <s ng-if="!$last">、</s>
+                    </span>
+                </p>
+                <!--<p>类型：<strong>{{item.genres.toString()}}</strong></p>-->
+                <p>类型：<strong>{{item.genres.join('、')}}</strong></p>
+                <!--toString()方法使用后自动 为 逗号分割-->
+            </div>
+        </div>
+    </a>
+</div>
+
+<div ng-show="!loading">
+    <p>总共：{{totalCount}}条记录，第{{currentPage}}/{{totalPages}}页</p>
+    <nav>
+        <ul class="pager">
+            <li ng-class="{disabled:currentPage<=1}"><a ng-click="goPage(currentPage - 1)">« 上一页</a></li>
+            <li ng-class="{disabled:currentPage>=totalPages}"><a ng-click="goPage(currentPage + 1)">下一页 »</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+<!--实现加载动画-->
+<div class="mask" ng-show="loading">
+    <div class="spinner">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    </div>
+</div>

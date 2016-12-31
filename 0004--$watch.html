@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>$watch</title>
+</head>
+<body>
+<table ng-controller="DemoController" border="1px solid #333333">
+    <tr>
+        <td>用户名</td>
+        <td><input type="text" ng-model="user.username"></td>
+    </tr>
+    <tr>
+        <td>密码</td>
+        <td><input type="password" ng-model="user.password"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="button" ng-click="login()" value="登录"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>{{message}}</td>
+    </tr>
+</table>
+<script src="angular.js"></script>
+<script>
+    //创建模块
+    var app = angular.module('myApp',[]);
+    //为模块创建控制器
+    app.controller('DemoController', ['$scope', function ($scope) {
+        $scope.user = {
+            username: '',
+            password: ''
+        };
+
+        $scope.login = function () {
+            //数据的变化是双向的同步，所以截面上的值的变化会同步到$scope.user上
+            console.log($scope.user.username);
+        };
+
+        //最开始提示： 请输入用户名
+        //输入不够长时，提示：输入不合法
+        //输入正确时，此行消失
+        $scope.message = '请输入用户名';
+
+        //监视模型的变化
+        $scope.$watch('user.username', function (now, old) {
+            //当username发生变化时，触发此函数
+            //console.log('now is ' + now);
+            //console.log('old is ' + old);
+            if(now){
+                if(now.length < 7){
+                    $scope.message = '输入不合法';
+                }else{
+                    $scope.message = '';
+                }
+            }else {
+                $scope.message = '请输入用户名';
+            }
+        })
+    }]);
+</script>
+</body>
+</html>

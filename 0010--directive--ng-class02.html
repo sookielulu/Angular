@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-class指令02</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            transition: background-color 1s linear;
+        }
+        .redOne{
+            background-color: red;
+        }
+        .greenOne{
+            background-color: green;
+        }
+    </style>
+</head>
+<body ng-app>
+<!--执行angularjs，首先找到ng-model属性，则会创建style模型，里面为空。-->
+<!--而ng-class="style"，表示正好绑定到ng-model上，但是为空-->
+<!--当select发生变化时，表示value发生变化，则ng-class值就会变为选中的value值-->
+<select ng-model="style">
+    <option value="redOne">红色</option>
+    <option value="greenOne">绿色</option>
+</select>
+
+<!--通常采用30行，但更常用的是上一个网页的方法-->
+<!--<div ng-class="style" id="box"></div>-->
+<div id="box" ng-class="{redOne:style=='redOne',greenOne:style=='greenOne'}"></div>
+<script src="angular.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>controller</title>
+    <!--angular基本不用操作DOM，如果必要，可以使用angular提供的jqlite-->
+</head>
+<body>
+<table ng-controller="DemoController" border="1px solid #333333">
+    <tr>
+        <td>用户名</td>
+        <td><input type="text" ng-model="user.username"></td>
+    </tr>
+    <tr>
+        <td>密码</td>
+        <td><input type="password" ng-model="user.password"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="button" ng-click="login()" value="登录"></td>
+    </tr>
+</table>
+<script src="angular.js"></script>
+<script>
+    //创建模块
+    var app = angular.module('myApp',[]);
+    //为模块创建控制器
+    app.controller('DemoController', ['$scope', function ($scope) {
+        $scope.user = {
+            username: '',
+            password: ''
+        };
+        $scope.login = function () {
+            //数据的变化是双向的同步，所以截面上的值的变化会同步到$scope.user上
+            console.log($scope.user.username);
+        }
+    }]);
+</script>
+</body>
+</html>

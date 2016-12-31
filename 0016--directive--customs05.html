@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令05--封装面包屑导航</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="angular.js"></script>
+    <script>
+        var myApp = angular.module('myApp', []);
+        myApp.controller('DemoController',['$scope', function ($scope) {
+            $scope.pathData1 = ['home', 'movie', 'love', 'before sunrise'];
+            $scope.pathData2 = ['home', 'movie', 'love', 'after sunset'];
+//            $scope.pathData = {home:"#", movie:'#', love:'#', sunrise:'#'};
+        }]);
+
+        //定义一个面包屑导航指令
+        myApp.directive('breadcrumb',[function () {
+            //返回指令对象
+            return {
+                scope: {
+                    //指令最终在什么地方用，使用时的data值最终会放在指令的scope里面
+                    //然后就可以在指令的模板中使用scope
+                    //data: '@data'
+                },
+                templateUrl: 'breadcrumb02.html',
+                replace: true,
+                link:function (scope,element,attributes) {
+                    scope.data = JSON.parse(attributes.data);
+//                    console.log(scope.data);
+                }
+            }
+        }])
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="DemoController">
+<breadcrumb data="{{pathData1}}"></breadcrumb>
+<breadcrumb data="{{pathData2}}"></breadcrumb>
+</body>
+</html>

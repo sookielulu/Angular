@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-bind指令</title>
+    <!--注意，虽然可以用这种方式在页面中绑定html内容，但尽可能不要这样做-->
+</head>
+<body ng-app="myApp" ng-init="username='<h1>hello</h1>'">
+
+<strong ng-bind-html="username"></strong>
+<!--但是ng-bind在绑定的值包含html时会转义此时可采用ng-bind-html-->
+
+<script src="angular.js"></script>
+<script src="angular-sanitize1.6.0-rc.2.js"></script>
+<script>
+    //使用自己定义的模块才可以依赖别的包里面定义的模块，即13行的模块
+    //因为angular定义的默认模块没有依赖任何模块
+    angular.module('myApp',['ngSanitize']);
+</script>
+</body>
+</html>

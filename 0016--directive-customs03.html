@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令（用）</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="angular.js"></script>
+    <script>
+        var demoApp = angular.module('demoApp', []);
+        demoApp.directive('btn', [function () {
+            return {
+                //必须将transclude设置为true，才能使用ng-transclude
+                transclude:true,
+
+                //替换指令在HTML中绑定的元素
+                replace: true,
+
+                //ng-transclude表示转置，也就是将使用时的标签的innerHTML作为当前元素的innerHTML显示出来
+                template:'<button class="btn btn-primary btn-lg" ng-transclude>button</button>'
+            };
+        }])
+    </script>
+</head>
+<body ng-app="demoApp">
+<btn>myButton</btn>
+</body>
+</html>

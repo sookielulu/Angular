@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="angular.js"></script>
+</head>
+<!--需要ng管理的代码必须包裹在一个有ng-app指令的元素中-->
+<!--ng-app是ng的入口，表示当前元素的所有指令都会被angular管理-->
+<body>
+<div ng-app ng-init="user.name='world'">
+    <!--ng-init="user.name='world'"表示给一个初始值world，并绑定到user.name-->
+    <h1>使用NG实现双边数据绑定</h1>
+    <p><input type="text" placeholder="请输入姓名" ng-model="user.name"></p>
+    <!--ng-model表示约定做一个数据模型的绑定-->
+    <p>hello <strong>{{user.name}}</strong></p>
+
+
+    <!--当网页加载完毕，AngularJS自动开始执行-->
+    <!--HTML页面中ng-xxx的属性称为  指令（Directive）-->
+    <!--ng-app指令告诉AngularJS，<xxx>元素是AngularJS应用程序管理的边界-->
+    <!--ng-model指令把文本框的值绑定到变量name上-->
+    <!--{{name}}表达式就是把应用程序变量name绑定到某个段落的innerHTML-->
+</div>
+</body>
+</html>

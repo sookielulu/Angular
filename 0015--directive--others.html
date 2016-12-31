@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-xxx 其他指令</title>
+    <script src="angular.js"></script>
+</head>
+<body ng-app>
+<p><input type="checkbox" ng-model="checked">全选/取消全选</p>
+<ul>
+    <!--ng-model和ne-checked都可以实现同步-->
+    <!--但ng-checked和ng-selected只会做数据到视图的同步，不会做视图到数据的同步-->
+    <li><input type="checkbox" ng-checked="checked">选项1</li>
+    <li><input type="checkbox" ng-checked="checked">选项2</li>
+    <li><input type="checkbox" ng-checked="checked">选项3</li>
+    <li><input type="checkbox" ng-checked="checked">选项4</li>
+    <li><input type="checkbox" ng-checked="checked">选项5</li>
+</ul>
+</body>
+</html>

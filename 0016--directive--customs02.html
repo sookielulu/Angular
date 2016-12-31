@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <!--一般采用directive-customs03中的方法-->
+    <script>
+        var demoApp = angular.module('demoApp', []);
+        demoApp.directive('btn',[function () {
+            return {
+                scope: {
+                    primary: '@primary',
+                    lg: '@lg',
+                    block: '@block'
+                },
+                template:'<button class="btn {{primary==\'true\' ? \'btn-primary\' : \'\'}}">button</button>'
+                //为防止内部的‘’与外部冲突，故采用转义字符\'
+            }
+        }]);
+    </script>
+</head>
+<body ng-app="demoApp">
+<btn primary="true" lg="" block></btn>
+</body>
+</html>

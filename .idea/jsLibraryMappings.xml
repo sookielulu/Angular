@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/0017--todomvc/todomvc-app-template-master" libraries="{Angular/0017--todomvc/todomvc-app-template-master/node_modules}" />
+    <file url="file://$PROJECT_DIR$/0020--MovieList/moviecat" libraries="{Angular/0020--MovieList/moviecat/node_modules}" />
+    <file url="file://$PROJECT_DIR$/todomvc/todomvc-app-template-master" libraries="{Angular/todomvc/todomvc-app-template-master/node_modules}" />
+  </component>
+</project>

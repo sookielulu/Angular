@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+    <script src="angular.js"></script>
+    <script>
+        //注册一个名为checkmark的过滤器，它返回的函数才是过滤器执行的函数
+        angular.module('MyAppFilters',[])
+                .filter('checkmark', function () {
+
+                    return function (input,style) {
+//                        return input ? '\u2713' : '\u2718';
+                        switch (style) {
+                            case 1:
+                                return input ? '\u2713' : '\u2718';
+                            case 2:
+                                return input ? '\u2714' : '\u2719';
+                        }
+                    }
+                })
+                .filter('score',function () {
+                    return function (input) {
+                        if(input < 60) {
+                            return '不及格';
+                        }else{
+                            return '及格';
+                        }
+                    }
+                })
+    </script>
+</head>
+<body ng-app="MyAppFilters">
+<div>
+    <h1>{{true | checkmark}}111</h1><!--此处对应13行-->
+    <h1>{{true | checkmark:1}}222</h1>
+    <h1>{{false | checkmark:2}}333</h1>
+</div>
+<hr>
+<div>
+    <input type="text" placeholder="请输入您的成绩" ng-model="core">
+    <p>你的成绩是：{{core}}</p>
+    <p>{{core | score}}</p>
+</div>
+</body>
+</html>

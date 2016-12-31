@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令04</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="angular.js"></script>
+    <script>
+        var demoApp = angular.module('demoApp', []);
+        //面包屑导航
+        demoApp.directive('breadcrumb', [function () {
+            return {
+                //指定当前指令的类型
+                //A：属性指令  E：元素指令  C：Class  M：comment
+                //EA：既可以做属性，又可以做元素
+                restrict: 'EA',
+                templateUrl: 'breadcrumb.html',
+                replace: true
+            };
+        }]);
+    </script>
+</head>
+<body ng-app="demoApp">
+<!--属性指令-->
+<div breadcrumb></div>
+
+<!--元素指令-->
+<breadcrumb></breadcrumb>
+</body>
+</html>

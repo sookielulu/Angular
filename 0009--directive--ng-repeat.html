@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-repeat指令</title>
+    <!--ng-repeat会遍历数组每一个元素，然后分别创建多个XX-->
+</head>
+<body ng-app="myApp">
+<ul ng-controller="ListController">
+    <!--<li data-id="1"><strong>jack</strong><span>15</span></li>-->
+    <li ng-repeat="item in jackData" data-id="{{item.id}}">
+        <span>{{$first ? '开始' : ''}}</span>
+        <strong>{{item.name}}</strong>&nbsp;&nbsp;&nbsp;
+        <span>{{item.age}}</span>
+        <span>{{$last ? '结束' : ''}}</span>
+    </li>
+</ul>
+
+<script src="angular.js"></script>
+<script>
+    angular.module('myApp',[])
+            .controller('ListController',['$scope',function ($scope) {
+
+                $scope.jackData = [];
+
+                for(var i = 1; i < 10; i++) {
+                    $scope.jackData[$scope.jackData.length] = {
+                        id: i,
+                        name: 'jack'+i,
+                        age: 20+i
+                    };
+                }
+            }])
+</script>
+</body>
+</html>

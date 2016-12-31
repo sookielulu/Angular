@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-app指令</title>
+    <script src="angular.js"></script>
+    <script>
+        var app1 = angular.module('myApp1',[]);
+        app1.controller('App1Controller',['$scope',function ($scope) {
+            $scope.do1 = function () {
+                console.log('点击了按钮1');
+            }
+        }]);
+        var app2 = angular.module('myApp2',[]);
+        app2.controller('App2Controller',['$scope', function ($scope) {
+            $scope.do2 = function () {
+                console.log('点击了按钮2');
+            }
+        }]);
+
+        //需要使用两个模块时，可创建一个新模块，将这两个模块进行拼合，然后统一使用这个新模块
+        angular.module('myApp',['myApp1','myApp2']);
+    </script>
+</head>
+<body ng-app="myApp">
+<!--
+<div ng-app="myApp1" ng-controller="App1Controller">
+    <input type="button" value="按钮1" ng-click="do1()">
+</div>
+<div ng-app="myApp2" ng-controller="App2Controller">
+    <input type="button" value="按钮2" ng-click="do2()">
+</div>
+-->
+<div ng-controller="App1Controller">
+    <input type="button" value="按钮1" ng-click="do1()">
+</div>
+<div ng-controller="App2Controller">
+    <input type="button" value="按钮2" ng-click="do2()">
+</div>
+</body>
+</html>

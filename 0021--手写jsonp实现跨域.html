@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp的实现方式</title>
+    <script src="0021--手写jsonp实现跨域.js"></script>
+    <script>
+        window.onload = function () {
+            (function () {
+                $jsonp(
+                        'http://api.douban.com/v2/movie/in_theaters',//要请求的地址
+                        {count:10, start:5},//给api传参
+                        function (data) {  //得到数据后，执行的回调函数
+                            document.getElementById('result').innerHTML = JSON.stringify(data);
+                        }
+                )
+            })();
+        }
+    </script>
+</head>
+<body>
+<div id="result"></div>
+</body>
+</html>

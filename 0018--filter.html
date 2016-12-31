@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+    <script src="angular.js"></script>
+    <script>
+        angular.module('app', []).controller('DemoController',['$scope','$filter',function ($scope,$filter) {
+            $scope.p1 = {
+                name: 'jack',
+                age: 19,
+                gender: false,
+                bestFriend: {
+                    name: 'tom',
+                    age: 18,
+                    gender: false
+                },
+                friends: [
+                    {
+                        name: 'lucy',
+                        age: 16,
+                        gender: false
+                    },
+                    {
+                        name: 'anna',
+                        age: 14,
+                        gender: false
+                    },
+                    {
+                        name: 'bill',
+                        age: 20,
+                        gender: false
+                    }
+                ]
+
+            };
+
+            //直接写$scope.text = $filter('limitTo')('abcdefghi',3,5);
+            //会报错：$filter is not defined
+            //如果在控制器中药用到一个不存在的对象，都尝试使用注入的方式
+            //即在定义controller时注入$filter
+            $scope.text = $filter('limitTo')('abcdefghi',3,5);
+        }])
+    </script>
+</head>
+<body ng-app="app">
+<!--过滤器使用方法：在要过滤的内容后面加 | ，然后写过滤器的名称-->
+
+<h1>{{1000000000 | currency}}</h1>
+<h2>{{1243214144157 | date}}</h2>
+<h2>{{1243214144157 | date:'yyyy-MM-dd HH:mm:ss'}}</h2>
+
+<hr>
+
+<div>
+    <p>{{'baidu.cn,baidu.com,baidu' | limitTo:3}}</p><!--显示3个-->
+    <p>{{'baidu.cn,baidu.com,baidu' | limitTo:3:8}}</p><!--从8开始显示3个-->
+</div>
+
+<hr>
+
+<div ng-controller="DemoController">
+
+    <input type="text" ng-model="p1.name">
+    <br>
+    {{p1}}
+    <br>
+    {{p1 | json}}
+    <br>
+    <pre>{{p1 | json}}</pre>
+
+    <hr>
+
+    <p>{{text}}</p>
+</div>
+
+
+
+
+</body>
+</html>

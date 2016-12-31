@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-if指令</title>
+    <style>
+        .tips {
+            position: absolute; /*通过绝对定位上下左右均为0，使得全屏*/
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(100,100,100,.5);
+            font-size: 40px;
+            line-height: 100vh;
+            text-align: center;
+        }
+    </style>
+    <script src="angular.js"></script>
+    <script>
+        angular.module('myApp',[])
+                .controller('ListController',['$scope', '$timeout', function ($scope,$timeout) {
+                    $scope.loading = true;
+                    $timeout(function () {
+                        $scope.loading = false;
+
+                        $timeout(function () {
+                            $scope.loading = true; //再过3秒再显示
+                        },3000)
+                    },3000);
+                }])
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="ListController">
+<div class="tips" ng-if="loading">
+    <!--ng-if决定元素是否存在，当为false时，元素会被remove-->
+    <!--ng-show决定元素是否显示，当为false时，元素不会被remove-->
+    loading...
+</div>
+</body>
+</html>

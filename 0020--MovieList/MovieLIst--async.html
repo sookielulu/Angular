@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>异步加载库</title>
+    <!--
+    load.js  script.js
+    这两个库都可以帮助我们异步的方式加载JS文件
+    -->
+    <script src="script.js-2.5.8/dist/script.js"></script>
+    <script src="js/angular-loader.js"></script>
+    <script>
+        window.onload = function () {
+            /*
+            $script('you want to load', function () {
+
+            })
+            */
+
+            //angular-loader的作用就是在使用一些异步加载脚本库的时候，自动控制依赖顺序
+            $script([
+                    './js/angular.js',
+                    './js/angular-route.js',
+                    './js/app.js',
+                    './movielist/controller.js',
+                    './components/Http.js',
+                    './components/auto-focus.js'
+            ],function () {
+                console.log(angular);
+                angular.bootstrap(document,['MovieList']);
+            })
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

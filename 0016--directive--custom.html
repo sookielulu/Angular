@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义指令</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script>
+        var demoApp = angular.module('demoApp',[]);
+
+        demoApp.controller('DemoController',['$scope',function ($scope) {
+            $scope.name = [];
+            $scope.do = function () {
+
+            };
+            $scope.$watch('',function (now,old) {
+                
+            });
+        }]);
+        
+
+        //自定义指令，第一个参数是指令的名字，第二个参数是一个数组，数组的最后一个元素是一个函数
+        //定义的名字应该使用驼峰命名法，使用时换成-
+        demoApp.directive('myButton',[function () {
+            //该函数应该返回一个指令对象
+            return {
+                template:'<input type="button" value="my" class="btn btn-lg btn-primary btn-block" />'
+            }
+        }]);
+
+        demoApp.directive('btnPrimary',[function () {
+            //该函数应该返回一个指令对象
+            return {
+                template:'<input type="button" value="pre" class="btn btn-primary" />'
+            }
+        }]);
+
+        demoApp.directive('btnDanger',[function () {
+            //该函数应该返回一个指令对象
+            return {
+                template:'<input type="button" value="danger!" class="btn btn-danger" />'
+            }
+        }]);
+
+        demoApp.directive('btnSuccess',[function () {
+            //该函数应该返回一个指令对象
+            return {
+                template:'<input type="button" value="success~" class="btn btn-success" />'
+            }
+        }])
+    </script>
+</head>
+<body ng-app="demoApp">
+<my-button></my-button>
+<btn-primary></btn-primary>
+<btn-danger></btn-danger>
+<btn-success></btn-success>
+</body>
+</html>

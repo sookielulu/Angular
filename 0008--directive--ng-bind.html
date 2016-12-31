@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-bind指令</title>
+</head>
+<body ng-app ng-init="username='<h1>hello</h1>'">
+<!--<strong>{{username}}</strong>-->
+<!--用上面这种方式，可能会先闪现{{username}}，因为angular没有加载完成时，{{username}}会被当成普通html字符串进行解析，因此采用下面ng-bind的方式：-->
+<strong ng-bind="username"></strong>
+<!--但是ng-bind在绑定的值包含html时会转义-->
+
+<script src="angular.js"></script>
+<script>
+
+</script>
+</body>
+</html>
